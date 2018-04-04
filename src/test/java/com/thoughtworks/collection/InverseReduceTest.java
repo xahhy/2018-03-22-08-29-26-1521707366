@@ -12,11 +12,11 @@ public class InverseReduceTest {
 
     @Test
     public void should_be_divided_to_smaller_number() {
-     //根据给定数字无限分割至等于0(提示：9-2=7,7-2=5 ...)
+        //根据给定数字无限分割至等于0(提示：9-2=7,7-2=5 ...)
         Random random = mock(Random.class);
         when(random.nextInt(3)).thenReturn(2);
 
-            InverseReduce inverseReduce = new InverseReduce(random);
+        InverseReduce inverseReduce = new InverseReduce(random);
 
         Integer[] result = new Integer[]{7, 5, 3, 1};
         List<Integer> resultList = Arrays.asList(result);
