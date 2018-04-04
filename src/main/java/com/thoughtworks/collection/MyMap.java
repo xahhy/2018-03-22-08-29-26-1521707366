@@ -3,7 +3,10 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MyMap {
 
@@ -17,22 +20,40 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        throw new NotImplementedException();
+        return array.stream()
+                .map(number -> 3 * number)
+                .collect(Collectors.toList());
     }
 
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        return array.stream()
+                .map(number -> letters[number - 1])
+                .collect(Collectors.toList());
     }
 
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        return array.stream()
+                .map(number -> {
+                    int decade = number / 26;
+                    int unit = number % 26;
+                    if (unit == 0) {
+                        decade -= 1;
+                        unit = 26;
+                    }
+                    String result = "";
+                    if (decade > 0) {
+                        result += letters[decade - 1];
+                    }
+                    return result += letters[unit - 1];
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        return array.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        return array.stream().sorted().collect(Collectors.toList());
     }
 }
